@@ -1,0 +1,239 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name='author' content='Joshua Hibbert'>
+        <meta name="description" content="Em Baseline Generator">
+        <!--<meta name="viewport" content="width=device-width, initial-scale=1">-->
+        <title>Em Baseline Generator</title>
+        <!--[if IE]>
+            <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+
+<style>
+* {
+  margin: 0;
+	padding: 0;
+}
+html {
+    overflow-x: hidden;
+    overflow-y: scroll;
+    padding: 0 3em 3em;
+}
+body {
+    background-color: #6cf;
+    font: 100%/1.5 ratio, sans-serif;
+}
+.container {
+	background-color: #fff;
+    margin: 0 auto 3em;
+    max-width: 45em;
+    padding: 3em;
+}
+h1 {
+    color: #fff;
+    font-family: 'futura-pt', sans-serif;
+    font-size: 3em;
+    font-weight: bold;
+    letter-spacing: -1px;
+    line-height: 1;
+    margin-bottom: 1em;
+    text-align: center;
+}
+.input {
+    display: inline-block;
+    margin-bottom: 3em;
+    margin-right: -.25em;
+    vertical-align: top;
+}
+.result {
+    display: block;
+}
+label,
+input {
+    display: inline-block;
+    margin-right: -.25em;
+    vertical-align: top;
+}
+label {
+    background-color: #555;
+    color: #fff;
+    cursor: pointer;
+    line-height: 3;
+    padding-left: 1.5em;
+    padding-right: 1.5em;
+    width: 12em;
+    -webkit-transition: .1s;
+       -moz-transition: .1s;
+        -ms-transition: .1s;
+         -o-transition: .1s;
+            transition: .1s;
+}
+label:hover {
+	background-color: #444;
+}
+.result label {
+    display: block;
+    margin-right: 0;
+    position: relative;
+    width: auto;
+}
+.result label:after {
+	color: hsla(0,0%,100%,.5);
+    content: ' (Click to select all text)';
+    position: absolute;
+    right: 1.5em;
+    top: 0;
+}
+input {
+	background-color: #eee;
+	border: 0;
+    color: #555;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1em;
+    font-weight: bold;
+    height: 1.5em;
+    outline: 0;
+    padding: .75em;
+    text-align: center;
+    width: 4.5em;
+}
+.input:first-child input {
+    margin-right: 3em;
+}
+textarea {
+    background-color: #eee;
+	background-image: -webkit-linear-gradient(transparent 50%, hsla(0,0%,0%,.025) 50%);
+    background-image: -moz-linear-gradient(transparent 50%, hsla(0,0%,0%,.025) 50%);
+    background-image: linear-gradient(transparent 50%, hsla(0,0%,0%,.025) 50%);
+	background-size: 3.428571428em 3.428571428em;
+    border: 0;
+    color: #555;
+    font-family: monospace;
+    font-size: 1.076923075em;
+    height: 118.25em;
+    line-height: 1.714285714;
+    margin-top: -2px;
+    outline: 0;
+    padding: 1.714285714em;
+    resize: none;
+    width: 100%;
+    vertical-align: top;
+    -webkit-box-sizing: border-box;
+       -moz-box-sizing: border-box;
+            box-sizing: border-box;
+}
+footer {
+    display: block;
+    text-align: center;
+}
+a {
+    color: #fff;
+    display: inline-block;
+    text-decoration: none;
+    -webkit-transition: .1s;
+       -moz-transition: .1s;
+        -ms-transition: .1s;
+         -o-transition: .1s;
+            transition: .1s;
+}
+a:hover,
+a:focus {
+	border-bottom: 2px solid #fff;
+}
+.tools-link {
+    background-color: #555;
+    display: block;
+    padding: .75em 9999em;
+    margin: 0 -9999em 3em;
+    text-align: center;
+}
+.tools-link:hover,
+.tools-link:focus {
+    border-bottom: 0;
+    background-color: #444;
+}
+</style>
+
+        <script type="text/javascript" src="//use.typekit.net/dca3nkr.js"></script>
+        <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+
+    </head>
+    <body>
+
+        <a class="tools-link" href="http://joshnh.com/tools/">&larr; Back to tools</a>
+
+		<h1>Em Baseline Generator</h1>
+		<div class="container">
+			<div class="input">
+			    <label for="font-size">Base Font Size (px)</label>
+			    <input id="font-size" type="text" value="16">
+			</div>
+			<div class="input">
+			    <label for="line-height">Line Height (px)</label>
+			    <input id="line-height" type="text" value="24">
+			</div>
+			<div class="result">
+			    <label for="output">Result</label>
+			    <textarea id="output" onclick="this.focus();this.select()" readonly></textarea>
+			</div>
+		</div>
+		<footer>
+		    <a href="http://joshnh.com/">Made by Joshua Hibbert</a>
+	  	</footer>
+
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+
+<script>
+var input = $('input'),
+    output = $('#output');
+
+input.change( function() {
+
+    var fontSize = $('#font-size').val(),
+    	lineHeight = $('#line-height').val(),
+    	fs   = ($('#font-size').val() / 16),
+        h1fs = fs * 3,
+        h2fs = fs * 2.25,
+        h3fs = fs * 1.5,
+        h4fs = fs * 1.3125,
+        h5fs = fs * 1.125,
+        lh   = (lineHeight / fontSize),
+        h1lh = (lineHeight / (fontSize * 3)),
+        h2lh = (lineHeight / (fontSize * 2.25)),
+        h3lh = (lineHeight / (fontSize * 1.5)),
+        h4lh = (lineHeight / (fontSize * 1.3125)),
+        h5lh = (lineHeight / (fontSize * 1.125)),
+        mb   = (lineHeight / fontSize),
+        h1mb = (lineHeight / (fontSize * 3)),
+        h2mb = (lineHeight / (fontSize * 2.25)),
+        h3mb = (lineHeight / (fontSize * 1.5)),
+        h4mb = (lineHeight / (fontSize * 1.3125)),
+        h5mb = (lineHeight / (fontSize * 1.125));
+
+    if(lh < 1) {
+    	lh = lh * 2;
+    }
+    if(h1lh < 1) {
+    	h1lh = h1lh * 2;
+    }
+    if(h2lh < 1) {
+    	h2lh = h2lh * 2;
+    }
+    if(h3lh < 1) {
+    	h3lh = h3lh * 2;
+    }
+    if(h4lh < 1) {
+    	h4lh = h4lh * 2;
+    }
+    if(h5lh < 1) {
+    	h5lh = h5lh * 2;
+    }
+
+    output.val("html {\n    font-size: 100%;\n}\nh1,\nh2,\nh3,\nh4,\nh5,\nh6 {\n    font-weight: bold;\n    margin: 0;\n}\nh1 {\n    font-size: " + h1fs + "em;\n    line-height: " + h1lh + ";\n    margin-bottom: " + h1mb + "em;\n}\nh2 {\n    font-size: " + h2fs + "em;\n    line-height: " + h2lh + ";\n    margin-bottom: " + h2mb + "em;\n}\nh3 {\n    font-size: " + h3fs + "em;\n    line-height: " + h3lh + ";\n    margin-bottom: " + h3mb + "em;\n}\nh4 {\n    font-size: " + h4fs + "em;\n    line-height: " + h4lh + ";\n    margin-bottom: " + h4mb + "em;\n}\nh5 {\n    font-size: " + h5fs + "em;\n    line-height: " + h5lh + ";\n    margin-bottom: " + h5mb + "em;\n}\nh6 {\n    font-size: " + fs + "em;\n    line-height: " + lh + ";\n    margin-bottom: " + mb + "em;\n}\np,\nblockquote {\n    font-size: " + fs + "em;\n    margin: 0 0 " + mb + "em;\n    line-height: " + lh + ";\n    -webkit-hyphens: auto;\n       -moz-hyphens: auto;\n        -ms-hyphens: auto;\n            hyphens: auto;\n}\ndl,\nol,\nul {\n    font-size: 1em;\n    margin: 0 0 " + mb + "em;\n    padding: 0;\n}\ndd,\ndt,\nli {\n    font-size: " + fs + "em;\n    line-height: " + lh + ";\n    margin: 0;\n}");
+
+}).trigger('change');
+</script>
+
+    </body>
+</html>
