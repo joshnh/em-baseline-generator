@@ -79,8 +79,14 @@ h1 {
     text-align: center;
 }
 .input {
-    margin-bottom: 3em;
+    margin-bottom: 1.5em;
     position: relative;
+}
+.input p {
+    color: #bbb;
+    float: right;
+    font-size: .75em;
+    line-height: 1.714285714;
 }
 .result {
     display: block;
@@ -92,37 +98,39 @@ input {
     vertical-align: top;
 }
 label {
-    background-color: #555;
-    color: #fff;
+    color: #555;
     cursor: pointer;
-    line-height: 3;
-    padding-left: 1.5em;
-    width: 100%;
-    -webkit-box-sizing: border-box;
-       -moz-box-sizing: border-box;
-            box-sizing: border-box;
+    float: left;
+    line-height: 1.5;
+    margin-bottom: 1.5em;
     -webkit-transition: .1s;
        -moz-transition: .1s;
         -ms-transition: .1s;
          -o-transition: .1s;
             transition: .1s;
 }
-label:hover {
-	background-color: #444;
-}
 .result label {
+    background-color: #555;
     border-bottom: 1px solid #eee;
+    color: #fff;
     display: block;
-    margin-right: 0;
+    margin-bottom: 0;
+    padding: .75em 0 .75em 1.5em;
     position: relative;
-    width: auto;
+    width: 100%;
+    -webkit-box-sizing: border-box;
+       -moz-box-sizing: border-box;
+            box-sizing: border-box;
+}
+.result label:hover {
+    background-color: #444;
 }
 .result label:after {
 	color: hsla(0,0%,100%,.5);
     content: ' (Click to select all text)';
     position: absolute;
     right: 1.5em;
-    top: 0;
+    top: .75em;
 }
 input {
 	background-color: #eee;
@@ -133,13 +141,17 @@ input {
     font-weight: bold;
     height: 1.5em;
     outline: 0;
-    padding: .75em;
-    position: absolute;
-    right: 0;
+    padding: 0;
     text-align: center;
-    top: 0;
-    width: 4.5em;
+    width: 100%;
+    -webkit-appearance: none;
 }
+input::-webkit-slider-thumb {
+    background: #555;
+    height: 1.5em;
+    width: 3em;
+    -webkit-appearance: none;
+  }
 textarea {
     background-color: #eee;
 	background-image: -webkit-linear-gradient(transparent 50%, hsla(0,0%,0%,.025) 50%);
@@ -292,13 +304,15 @@ a:focus {
 		<div class="container">
             <div class="grid">
                 <div class="grid__col--50">
+                    <div class="input">
+                        <label id="font-size-label" for="font-size">Base Font Size (<span class="value">16px</span>)</label>
+                        <p>10 – 50 px</p>
+                        <input id="font-size" type="range" min="10" max="50" value="16">
+                    </div>
         			<div class="input">
-        			    <label for="font-size">Base Font Size (px)</label>
-        			    <input id="font-size" type="text" value="16">
-        			</div>
-        			<div class="input">
-        			    <label for="line-height">Line Height (px)</label>
-        			    <input id="line-height" type="text" value="24">
+                        <label id="line-height-label" for="line-height">Line Height (<span class="value">24px</span>)</label>
+                        <p>10 – 50 px</p>
+                        <input id="line-height" type="range" min="10" max="50" value="24">
         			</div>
         			<div class="result">
         			    <label for="output">Result</label>
@@ -345,7 +359,9 @@ a:focus {
 
 var input = $('input'),
     output = $('#output'),
-    demo = $('.demo');
+    demo = $('.demo'),
+    fontSizeLabel = $('#font-size-label .value'),
+    lineHeightLabel = $('#line-height-label .value');
 
 input.change( function() {
 
@@ -456,6 +472,9 @@ input.change( function() {
     demo.find('li').css({
         'line-height': lh
     });
+
+    fontSizeLabel.text(fontSize + 'px');
+    lineHeightLabel.text(lineHeight + 'px');
 
 }).trigger('change');
 </script>
