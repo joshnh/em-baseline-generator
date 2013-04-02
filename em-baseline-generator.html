@@ -11,11 +11,49 @@
         <![endif]-->
 
 <style>
+
+/* Grid */
+
+.grid {
+    margin-left: -1.25%;
+    margin-right: -1.25%;
+}
+[class*="grid__col--"] {
+    margin-left: 1.25%;
+    margin-right: 1.25%;
+}
+@media (min-width: 40em) { /* 640px */
+    [class*="grid__col--"] {
+        display: inline-block;
+        vertical-align: top;
+        zoom: 1; /* Fix for IE7 */
+        *display: inline; /* Fix for IE7 */
+        -webkit-box-sizing: border-box; /* Enables the use of padding without breaking the grid */
+           -moz-box-sizing: border-box;
+                box-sizing: border-box;
+    }
+    .grid__col--20  { width: 17.5%; }
+    .grid__col--25  { width: 22.5%; }
+    .grid__col--30  { width: 27.5%; }
+    .grid__col--33  { width: 30.833333333%; }
+    .grid__col--40  { width: 37.5%; }
+    .grid__col--50  { width: 47.5%; }
+    .grid__col--60  { width: 57.5%; }
+    .grid__col--66  { width: 64.166666666%; }
+    .grid__col--70  { width: 67.5%; }
+    .grid__col--75  { width: 72.5%; }
+    .grid__col--80  { width: 77.5%; }
+    .grid__col--100 { width: 97.5%; }
+}
+
+/* Page Styles */
+
 * {
   margin: 0;
 	padding: 0;
 }
 html {
+    font-size: 100%;
     overflow-x: hidden;
     overflow-y: scroll;
     padding: 0 3em 3em;
@@ -27,7 +65,7 @@ body {
 .container {
 	background-color: #fff;
     margin: 0 auto 3em;
-    max-width: 45em;
+    max-width: 60em;
     padding: 3em;
 }
 h1 {
@@ -41,10 +79,8 @@ h1 {
     text-align: center;
 }
 .input {
-    display: inline-block;
     margin-bottom: 3em;
-    margin-right: -.25em;
-    vertical-align: top;
+    position: relative;
 }
 .result {
     display: block;
@@ -61,8 +97,10 @@ label {
     cursor: pointer;
     line-height: 3;
     padding-left: 1.5em;
-    padding-right: 1.5em;
-    width: 12em;
+    width: 100%;
+    -webkit-box-sizing: border-box;
+       -moz-box-sizing: border-box;
+            box-sizing: border-box;
     -webkit-transition: .1s;
        -moz-transition: .1s;
         -ms-transition: .1s;
@@ -73,6 +111,7 @@ label:hover {
 	background-color: #444;
 }
 .result label {
+    border-bottom: 1px solid #eee;
     display: block;
     margin-right: 0;
     position: relative;
@@ -95,11 +134,11 @@ input {
     height: 1.5em;
     outline: 0;
     padding: .75em;
+    position: absolute;
+    right: 0;
     text-align: center;
+    top: 0;
     width: 4.5em;
-}
-.input:first-child input {
-    margin-right: 3em;
 }
 textarea {
     background-color: #eee;
@@ -111,7 +150,7 @@ textarea {
     color: #555;
     font-family: monospace;
     font-size: 1.076923075em;
-    height: 118.25em;
+    height: 116.5em;
     line-height: 1.714285714;
     margin-top: -2px;
     outline: 0;
@@ -144,14 +183,100 @@ a:focus {
 .tools-link {
     background-color: #555;
     display: block;
-    padding: .75em 9999em;
-    margin: 0 -9999em 3em;
+    font-size: .875em;
+    padding: .857142857em 9999em;
+    margin: 0 -9999em 3.428571428em;
+    line-height: 1.714285714;
     text-align: center;
+    text-transform: uppercase;
 }
 .tools-link:hover,
 .tools-link:focus {
     border-bottom: 0;
     background-color: #444;
+}
+ /* Demo */
+
+.demo {
+    background-image: -webkit-linear-gradient(hsla(200,100%,70%,.5) 1px, transparent 1px);
+    background-image: -moz-linear-gradient(hsla(200,100%,70%,.5) 1px, transparent 1px);
+    background-image: linear-gradient(hsla(200,100%,70%,.5) 1px, transparent 1px);
+    background-size: 1.5em 1.5em;
+    margin-top: -1px;
+    padding: 1.5em;
+}
+.demo h1,
+.demo h2,
+.demo h3,
+.demo h4,
+.demo h5,
+.demo h6 {
+    color: #555;
+    font-weight: bold;
+    margin: 0;
+}
+.demo h1 {
+    font-size: 3em;
+    line-height: 1;
+    margin-bottom: 0.5em;
+    padding-top: 1px;
+    text-align: left;
+}
+.demo h2 {
+    font-size: 2.25em;
+    line-height: 1.3333333333333333;
+    margin-bottom: 0.6666666666666666em;
+}
+.demo h3 {
+    font-size: 1.5em;
+    line-height: 1;
+    margin-bottom: 1em;
+}
+.demo h4 {
+    font-size: 1.3125em;
+    line-height: 1.1428571428571428;
+    margin-bottom: 1.1428571428571428em;
+}
+.demo h5 {
+    font-size: 1.125em;
+    line-height: 1.3333333333333333;
+    margin-bottom: 1.3333333333333333em;
+}
+.demo h6 {
+    font-size: 1em;
+    line-height: 1.5;
+    margin-bottom: 1.5em;
+}
+.demo p,
+.demo blockquote {
+    color: #555;
+    font-size: 1em;
+    margin: 0 0 1.5em;
+    line-height: 1.5;
+    -webkit-hyphens: auto;
+       -moz-hyphens: auto;
+        -ms-hyphens: auto;
+            hyphens: auto;
+}
+.demo blockquote {
+    font-style: italic;
+}
+.demo dl,
+.demo ol,
+.demo ul {
+    color: #555;
+    font-size: 1em;
+    margin: 0 0 1.5em;
+    padding: 0;
+}
+.demo dd,
+.demo dt,
+.demo li {
+    line-height: 1.5;
+    margin: 0;
+}
+.demo dt {
+    font-weight: bold;
 }
 </style>
 
@@ -165,18 +290,48 @@ a:focus {
 
 		<h1>Em Baseline Generator</h1>
 		<div class="container">
-			<div class="input">
-			    <label for="font-size">Base Font Size (px)</label>
-			    <input id="font-size" type="text" value="16">
-			</div>
-			<div class="input">
-			    <label for="line-height">Line Height (px)</label>
-			    <input id="line-height" type="text" value="24">
-			</div>
-			<div class="result">
-			    <label for="output">Result</label>
-			    <textarea id="output" onclick="this.focus();this.select()" readonly></textarea>
-			</div>
+            <div class="grid">
+                <div class="grid__col--50">
+        			<div class="input">
+        			    <label for="font-size">Base Font Size (px)</label>
+        			    <input id="font-size" type="text" value="16">
+        			</div>
+        			<div class="input">
+        			    <label for="line-height">Line Height (px)</label>
+        			    <input id="line-height" type="text" value="24">
+        			</div>
+        			<div class="result">
+        			    <label for="output">Result</label>
+        			    <textarea id="output" onclick="this.focus();this.select()" readonly></textarea>
+        			</div>
+                </div><!--
+             --><div class="demo grid__col--50">
+                    <h1>H1 Title</h1>
+                    <h2>H2 Title</h2>
+                    <h3>H3 Title</h3>
+                    <h4>H4 Title</h4>
+                    <h5>H5 Title</h5>
+                    <h6>H6 Title</h6>
+                    <p>Paragraph. Paragraph. Paragraph. Paragraph. Paragraph. Paragraph. Paragraph. Paragraph. Paragraph. Paragraph. Paragraph. Paragraph. Paragraph. Paragraph. Paragraph.</p>
+                    <blockquote>Blockquote. Blockquote. Blockquote.</blockquote>
+                    <ul>
+                        <li>Unordered list item</li>
+                        <li>Unordered list item</li>
+                        <li>Unordered list item</li>
+                    </ul>
+                    <ol>
+                        <li>Ordered list item</li>
+                        <li>Ordered list item</li>
+                        <li>Ordered list item</li>
+                    </ol>
+                    <dl>
+                        <dt>Term</dt>
+                        <dd>Definition</dd>
+                        <dt>Term</dt>
+                        <dd>Definition</dd>
+                    </dl>
+                </div>
+            </div>
 		</div>
 		<footer>
 		    <a href="http://joshnh.com/">Made by Joshua Hibbert</a>
@@ -186,7 +341,8 @@ a:focus {
 
 <script>
 var input = $('input'),
-    output = $('#output');
+    output = $('#output'),
+    demo = $('.demo');
 
 input.change( function() {
 
@@ -230,7 +386,73 @@ input.change( function() {
     	h5lh = h5lh * 2;
     }
 
-    output.val("html {\n    font-size: 100%;\n}\nh1,\nh2,\nh3,\nh4,\nh5,\nh6 {\n    font-weight: bold;\n    margin: 0;\n}\nh1 {\n    font-size: " + h1fs + "em;\n    line-height: " + h1lh + ";\n    margin-bottom: " + h1mb + "em;\n}\nh2 {\n    font-size: " + h2fs + "em;\n    line-height: " + h2lh + ";\n    margin-bottom: " + h2mb + "em;\n}\nh3 {\n    font-size: " + h3fs + "em;\n    line-height: " + h3lh + ";\n    margin-bottom: " + h3mb + "em;\n}\nh4 {\n    font-size: " + h4fs + "em;\n    line-height: " + h4lh + ";\n    margin-bottom: " + h4mb + "em;\n}\nh5 {\n    font-size: " + h5fs + "em;\n    line-height: " + h5lh + ";\n    margin-bottom: " + h5mb + "em;\n}\nh6 {\n    font-size: " + fs + "em;\n    line-height: " + lh + ";\n    margin-bottom: " + mb + "em;\n}\np,\nblockquote {\n    font-size: " + fs + "em;\n    margin: 0 0 " + mb + "em;\n    line-height: " + lh + ";\n    -webkit-hyphens: auto;\n       -moz-hyphens: auto;\n        -ms-hyphens: auto;\n            hyphens: auto;\n}\ndl,\nol,\nul {\n    font-size: 1em;\n    margin: 0 0 " + mb + "em;\n    padding: 0;\n}\ndd,\ndt,\nli {\n    font-size: " + fs + "em;\n    line-height: " + lh + ";\n    margin: 0;\n}");
+    output.val("html {\n    font-size: 100%;\n}\nh1,\nh2,\nh3,\nh4,\nh5,\nh6 {\n    font-weight: bold;\n    margin: 0;\n}\nh1 {\n    font-size: " + h1fs + "em;\n    line-height: " + h1lh + ";\n    margin-bottom: " + h1mb + "em;\n}\nh2 {\n    font-size: " + h2fs + "em;\n    line-height: " + h2lh + ";\n    margin-bottom: " + h2mb + "em;\n}\nh3 {\n    font-size: " + h3fs + "em;\n    line-height: " + h3lh + ";\n    margin-bottom: " + h3mb + "em;\n}\nh4 {\n    font-size: " + h4fs + "em;\n    line-height: " + h4lh + ";\n    margin-bottom: " + h4mb + "em;\n}\nh5 {\n    font-size: " + h5fs + "em;\n    line-height: " + h5lh + ";\n    margin-bottom: " + h5mb + "em;\n}\nh6 {\n    font-size: " + fs + "em;\n    line-height: " + lh + ";\n    margin-bottom: " + mb + "em;\n}\np,\nblockquote {\n    font-size: " + fs + "em;\n    margin: 0 0 " + mb + "em;\n    line-height: " + lh + ";\n    -webkit-hyphens: auto;\n       -moz-hyphens: auto;\n        -ms-hyphens: auto;\n            hyphens: auto;\n}\ndl,\nol,\nul {\n    font-size: 1em;\n    margin: 0 0 " + mb + "em;\n    padding: 0;\n}\ndd,\ndt,\nli {\n    line-height: " + lh + ";\n    margin: 0;\n}");
+
+    demo.css({
+        'background-size': lineHeight + 'px ' + lineHeight + 'px',
+        'padding-top': lineHeight + 'px'
+    });
+    demo.find('h1').css({
+        'font-size': h1fs + 'em',
+        'line-height': h1lh,
+        'margin-bottom': h1mb + 'em'
+    });
+    demo.find('h2').css({
+        'font-size': h2fs + 'em',
+        'line-height': h2lh,
+        'margin-bottom': h2mb + 'em'
+    });
+    demo.find('h3').css({
+        'font-size': h3fs + 'em',
+        'line-height': h3lh,
+        'margin-bottom': h3mb + 'em'
+    });
+    demo.find('h4').css({
+        'font-size': h4fs + 'em',
+        'line-height': h4lh,
+        'margin-bottom': h4mb + 'em'
+    });
+    demo.find('h5').css({
+        'font-size': h5fs + 'em',
+        'line-height': h5lh,
+        'margin-bottom': h5mb + 'em'
+    });
+    demo.find('h6').css({
+        'font-size': fs + 'em',
+        'line-height': lh,
+        'margin-bottom': mb + 'em'
+    });
+    demo.find('p').css({
+        'font-size': fs + 'em',
+        'line-height': lh,
+        'margin-bottom': mb + 'em'
+    });
+    demo.find('blockquote').css({
+        'font-size': fs + 'em',
+        'line-height': lh,
+        'margin-bottom': mb + 'em'
+    });
+    demo.find('dl').css({
+        'font-size': fs + 'em',
+        'margin-bottom': mb + 'em'
+    });
+    demo.find('ol').css({
+        'font-size': fs + 'em',
+        'margin-bottom': mb + 'em'
+    });
+    demo.find('ul').css({
+        'font-size': fs + 'em',
+        'margin-bottom': mb + 'em'
+    });
+    demo.find('dd').css({
+        'line-height': lh
+    });
+    demo.find('dt').css({
+        'line-height': lh
+    });
+    demo.find('li').css({
+        'line-height': lh
+    });
 
 }).trigger('change');
 </script>
