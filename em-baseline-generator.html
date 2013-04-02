@@ -50,7 +50,7 @@
 
 * {
   margin: 0;
-	padding: 0;
+    padding: 0;
 }
 html {
     font-size: 100%;
@@ -63,7 +63,7 @@ body {
     font: 100%/1.5 ratio, sans-serif;
 }
 .container {
-	background-color: #fff;
+    background-color: #fff;
     margin: 0 auto 3em;
     max-width: 60em;
     padding: 3em;
@@ -126,15 +126,15 @@ label {
     background-color: #444;
 }
 .result label:after {
-	color: hsla(0,0%,100%,.5);
+    color: hsla(0,0%,100%,.5);
     content: ' (Click to select all text)';
     position: absolute;
     right: 1.5em;
     top: .75em;
 }
 input {
-	background-color: #eee;
-	border: 0;
+    background-color: #eee;
+    border: 0;
     color: #555;
     font-family: 'Open Sans', sans-serif;
     font-size: 1em;
@@ -154,10 +154,10 @@ input::-webkit-slider-thumb {
   }
 textarea {
     background-color: #eee;
-	background-image: -webkit-linear-gradient(transparent 50%, hsla(0,0%,0%,.025) 50%);
+    background-image: -webkit-linear-gradient(transparent 50%, hsla(0,0%,0%,.025) 50%);
     background-image: -moz-linear-gradient(transparent 50%, hsla(0,0%,0%,.025) 50%);
     background-image: linear-gradient(transparent 50%, hsla(0,0%,0%,.025) 50%);
-	background-size: 3.428571428em 3.428571428em;
+    background-size: 3.428571428em 3.428571428em;
     border: 0;
     color: #555;
     font-family: monospace;
@@ -190,7 +190,7 @@ a {
 }
 a:hover,
 a:focus {
-	border-bottom: 2px solid #fff;
+    border-bottom: 2px solid #fff;
 }
 .tools-link {
     background-color: #555;
@@ -300,8 +300,8 @@ a:focus {
 
         <a class="tools-link" href="http://joshnh.com/tools/">&larr; Back to tools</a>
 
-		<h1>Em Baseline Generator</h1>
-		<div class="container">
+        <h1>Em Baseline Generator</h1>
+        <div class="container">
             <div class="grid">
                 <div class="grid__col--50">
                     <div class="input">
@@ -309,15 +309,15 @@ a:focus {
                         <p>10 – 50 px</p>
                         <input id="font-size" type="range" min="10" max="50" value="16">
                     </div>
-        			<div class="input">
+                    <div class="input">
                         <label id="line-height-label" for="line-height">Line Height (<span class="value">24px</span>)</label>
                         <p>10 – 50 px</p>
                         <input id="line-height" type="range" min="10" max="50" value="24">
-        			</div>
-        			<div class="result">
-        			    <label for="output">Result</label>
-        			    <textarea id="output" onclick="this.focus();this.select()" readonly></textarea>
-        			</div>
+                    </div>
+                    <div class="result">
+                        <label for="output">Result</label>
+                        <textarea id="output" onclick="this.focus();this.select()" readonly></textarea>
+                    </div>
                 </div><!--
              --><div class="demo grid__col--50">
                     <h1>H1 Title</h1>
@@ -346,12 +346,12 @@ a:focus {
                     </dl>
                 </div>
             </div>
-		</div>
-		<footer>
-		    <a href="http://joshnh.com/">Made by Joshua Hibbert</a>
-	  	</footer>
+        </div>
+        <footer>
+            <a href="http://joshnh.com/">Made by Joshua Hibbert</a>
+        </footer>
 
-		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 
 <script>
 
@@ -366,43 +366,61 @@ var input = $('input'),
 input.change( function() {
 
     var fontSize = $('#font-size').val(),
-    	lineHeight = $('#line-height').val(),
-    	fs   = Math.round( ($('#font-size').val() / 16) * 100000) / 100000,
-        h1fs = Math.round( fs * 3 * 100000) / 100000,
-        h2fs = Math.round( fs * 2.25 * 100000) / 100000,
-        h3fs = Math.round( fs * 1.5 * 100000) / 100000,
-        h4fs = Math.round( fs * 1.3125 * 100000) / 100000,
-        h5fs = Math.round( fs * 1.125 * 100000) / 100000,
-        lh   = Math.round( (lineHeight / fontSize) * 100000) / 100000,
-        h1lh = Math.round( (lineHeight / (fontSize * 3) ) * 100000) / 100000,
-        h2lh = Math.round( (lineHeight / (fontSize * 2.25) ) * 100000) / 100000,
-        h3lh = Math.round( (lineHeight / (fontSize * 1.5) ) * 100000) / 100000,
-        h4lh = Math.round( (lineHeight / (fontSize * 1.3125) ) * 100000) / 100000,
-        h5lh = Math.round( (lineHeight / (fontSize * 1.125) ) * 100000) / 100000,
-        mb   = Math.round( (lineHeight / fontSize) * 100000) / 100000,
-        h1mb = Math.round( (lineHeight / (fontSize * 3) ) * 100000) / 100000,
-        h2mb = Math.round( (lineHeight / (fontSize * 2.25) ) * 100000) / 100000,
-        h3mb = Math.round( (lineHeight / (fontSize * 1.5) ) * 100000) / 100000,
-        h4mb = Math.round( (lineHeight / (fontSize * 1.3125) ) * 100000) / 100000,
-        h5mb = Math.round( (lineHeight / (fontSize * 1.125) ) * 100000) / 100000;
+        lineHeight = $('#line-height').val(),
+        //fs   = Math.round( ($('#font-size').val() / 16) * 100000) / 100000,
+        //h1fs = Math.round( fs * 3 * 100000) / 100000,
+        //h2fs = Math.round( fs * 2.25 * 100000) / 100000,
+        //h3fs = Math.round( fs * 1.5 * 100000) / 100000,
+        //h4fs = Math.round( fs * 1.3125 * 100000) / 100000,
+        //h5fs = Math.round( fs * 1.125 * 100000) / 100000,
+        //lh   = Math.round( (lineHeight / fontSize) * 100000) / 100000,
+        //h1lh = Math.round( (lineHeight / (fontSize * 3) ) * 100000) / 100000,
+        //h2lh = Math.round( (lineHeight / (fontSize * 2.25) ) * 100000) / 100000,
+        //h3lh = Math.round( (lineHeight / (fontSize * 1.5) ) * 100000) / 100000,
+        //h4lh = Math.round( (lineHeight / (fontSize * 1.3125) ) * 100000) / 100000,
+        //h5lh = Math.round( (lineHeight / (fontSize * 1.125) ) * 100000) / 100000,
+        //mb   = Math.round( (lineHeight / fontSize) * 100000) / 100000,
+        //h1mb = Math.round( (lineHeight / (fontSize * 3) ) * 100000) / 100000,
+        //h2mb = Math.round( (lineHeight / (fontSize * 2.25) ) * 100000) / 100000,
+        //h3mb = Math.round( (lineHeight / (fontSize * 1.5) ) * 100000) / 100000,
+        //h4mb = Math.round( (lineHeight / (fontSize * 1.3125) ) * 100000) / 100000,
+        //h5mb = Math.round( (lineHeight / (fontSize * 1.125) ) * 100000) / 100000;
+        fs   = ($('#font-size').val() / 16),
+        h1fs = fs * 3,
+        h2fs = fs * 2.25,
+        h3fs = fs * 1.5,
+        h4fs = fs * 1.3125,
+        h5fs = fs * 1.125,
+        lh   = (lineHeight / fontSize),
+        h1lh = (lineHeight / (fontSize * 3) ),
+        h2lh = (lineHeight / (fontSize * 2.25) ),
+        h3lh = (lineHeight / (fontSize * 1.5) ),
+        h4lh = (lineHeight / (fontSize * 1.3125) ),
+        h5lh = (lineHeight / (fontSize * 1.125) ),
+        mb   = (lineHeight / fontSize),
+        h1mb = (lineHeight / (fontSize * 3) ),
+        h2mb = (lineHeight / (fontSize * 2.25) ),
+        h3mb = (lineHeight / (fontSize * 1.5) ),
+        h4mb = (lineHeight / (fontSize * 1.3125) ),
+        h5mb = (lineHeight / (fontSize * 1.125) );
 
     if(lh < 1) {
-    	lh = lh * 2;
+        lh = lh * 2;
     }
     if(h1lh < 1) {
-    	h1lh = h1lh * 2;
+        h1lh = h1lh * 2;
     }
     if(h2lh < 1) {
-    	h2lh = h2lh * 2;
+        h2lh = h2lh * 2;
     }
     if(h3lh < 1) {
-    	h3lh = h3lh * 2;
+        h3lh = h3lh * 2;
     }
     if(h4lh < 1) {
-    	h4lh = h4lh * 2;
+        h4lh = h4lh * 2;
     }
     if(h5lh < 1) {
-    	h5lh = h5lh * 2;
+        h5lh = h5lh * 2;
     }
 
     output.val("html {\n    font-size: 100%;\n}\nh1,\nh2,\nh3,\nh4,\nh5,\nh6 {\n    font-weight: bold;\n    margin: 0;\n}\nh1 {\n    font-size: " + h1fs + "em;\n    line-height: " + h1lh + ";\n    margin-bottom: " + h1mb + "em;\n}\nh2 {\n    font-size: " + h2fs + "em;\n    line-height: " + h2lh + ";\n    margin-bottom: " + h2mb + "em;\n}\nh3 {\n    font-size: " + h3fs + "em;\n    line-height: " + h3lh + ";\n    margin-bottom: " + h3mb + "em;\n}\nh4 {\n    font-size: " + h4fs + "em;\n    line-height: " + h4lh + ";\n    margin-bottom: " + h4mb + "em;\n}\nh5 {\n    font-size: " + h5fs + "em;\n    line-height: " + h5lh + ";\n    margin-bottom: " + h5mb + "em;\n}\nh6 {\n    font-size: " + fs + "em;\n    line-height: " + lh + ";\n    margin-bottom: " + mb + "em;\n}\np,\nblockquote {\n    font-size: " + fs + "em;\n    margin: 0 0 " + mb + "em;\n    line-height: " + lh + ";\n    -webkit-hyphens: auto;\n       -moz-hyphens: auto;\n        -ms-hyphens: auto;\n            hyphens: auto;\n}\ndl,\nol,\nul {\n    font-size: 1em;\n    margin: 0 0 " + mb + "em;\n    padding: 0;\n}\ndd,\ndt,\nli {\n    line-height: " + lh + ";\n    margin: 0;\n}");
